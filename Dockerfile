@@ -34,19 +34,19 @@ RUN apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Download tigerVNC binaries
-ADD https://dl.bintray.com/tigervnc/stable/tigervnc-1.9.0.x86_64.tar.gz $HOME/tigervnc/tigervnc.tar.gz
-RUN tar xmzf $HOME/tigervnc/tigervnc.tar.gz -C home/tigervnc/ && rm home/tigervnc/tigervnc.tar.gz
+ADD https://dl.bintray.com/tigervnc/stable/tigervnc-1.9.0.x86_64.tar.gz home/tigervnc/tigervnc.tar.gz
+RUN tar xmzf home/tigervnc/tigervnc.tar.gz -C home/tigervnc/ && rm home/tigervnc/tigervnc.tar.gz
 RUN cp -R home/tigervnc/tigervnc-1.9.0.x86_64/* / && rm -rf home/tigervnc/
 
 # Clone noVNC.
-RUN git clone https://github.com/novnc/noVNC.git $HOME/noVNC
+RUN git clone https://github.com/novnc/noVNC.git home/noVNC
 RUN cp home/noVNC/vnc.html home/noVNC/index.html
 
 # Clone websockify for noVNC
 Run git clone https://github.com/kanaka/websockify home/noVNC/utils/websockify
 
 # Download ngrok.
-ADD https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip $HOME/ngrok/ngrok.zip
+ADD https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip home/ngrok/ngrok.zip
 RUN unzip -o home/ngrok/ngrok.zip -d home/ngrok && rm home/ngrok/ngrok.zip
 
 # Copy supervisor config
